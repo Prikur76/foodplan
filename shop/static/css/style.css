@@ -245,3 +245,69 @@ body {
         background-color: #91B93E;
     }
 }
+
+.question-section {
+    background: #fafafa;
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+.wrapper-inner {
+    width: auto;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.question-section .shadow-wrapper {
+    -webkit-box-shadow: 0 0 24px rgba(0,0,0,.1);
+    box-shadow: 0 0 24px rgba(0,0,0,.1);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 71px 293px 80px;
+}
+
+.question-section .shadow-wrapper form h3 {
+    font-size: 26px;
+    margin-bottom: 55px;
+    font-weight: bold;
+}
+
+.shadow-wrapper {
+    -webkit-box-shadow: 0 0 24px rgba(0,0,0,.1);
+    box-shadow: 0 0 24px rgba(0,0,0,.1);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #fff;
+    padding: 71px 293px 80px;
+}
+
+.shadow-wrapper form label {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin-bottom: 23px;
+    position: relative;
+    font-weight: 400;
+}
+
+.question-section .shadow-wrapper form label input {
+    width: 100%;
+    height: 55px;
+    border: 1px solid #8a8a8a;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin-top: 6px;
+    background: #fafafa;
+    padding: 0 15px;
+    font-weight: 700;
+    color: #5e5f5f;
+    -webkit-appearance: none;
+}

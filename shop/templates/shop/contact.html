@@ -6,66 +6,64 @@
 	Контакты Food Plan
 {% endblock %}
 {% block content %}
-	<main>
-		<div class="breadcrumbs blog big-shadow">
-			<div class="wrapper-inner">
-				<div class="shadow-wrapper">
-					<div class="prev-wrapper">
-						<span></span>
-						Назад
-						<a href="/"></a>
-					</div>
-					<h1>Контакты</h1>
-				</div>
-			</div>
-		</div>
-		<div class="contacts-section">
-			<div class="wrapper-inner">
-				<div class="shadow-wrapper">
-					<div class="left-column">
-						ООО «ФУДПЛАН» <br>
-						Адрес: 117342, г. Москва, ул. Бутлерова д.17, 3 этаж, комната 95, офис 173<br>
-						ИНН: 9728011766<br>
-						Email: <a href="mailto:foodplan@foodplan.ru">foodplan@foodplan.ru</a>
+	<main style="margin-top: calc(2rem + 85px);">
+		<div class="d-flex flex-column justify-content-start foodplan__head_desc">
 
+			<div class="contacts-section">
+				<div class="wrapper-inner">
+					<div class="shadow-wrapper">
+						<h1 class="mb-5"><b>Контакты</b></h1>
+						<div class="left-column">
+							ООО «ФУДПЛАН» <br>
+							Адрес: 117342, г. Москва, ул. Бутлерова д.17, 3 этаж, комната 95, офис 173<br>
+							ИНН: 9728011766<br>
+							Email: <a href="mailto:foodplan@foodplan.ru">foodplan@foodplan.ru</a>
+
+						</div>
+		<!--                <div class="right-column">-->
+		<!--                    <span></span>-->
+		<!--                    <a href="tel:79995554455">+7 999 555 44 55</a>-->
+		<!--                </div>-->
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="question-section">
-			<div class="wrapper-inner">
-				<div class="shadow-wrapper">
-					<form method="POST" id="feedback_form" action="/?WEB_FORM_ID=1&amp;web_form_submit=Отправить">
-						<input type="hidden" name="sessid" id="sessid" value="bed60e776781d007ce9f2b124f66e4ce">
-						<input type="hidden" name="WEB_FORM_ID" value="1">
-						<h3>Напишите нам </h3>
-						<label>
-								Ваше имя
-								<input type="text" required="" placeholder="Марина" name="form_text_2">
-						</label>
-						<label>
-								Ваш email
-								<input type="email" required="" placeholder="marinaivanova@mail.ru" name="form_email_1">
-						</label>
-						<label>
-								Ваш вопрос
-								<textarea required="" name="form_textarea_3"></textarea>
-						</label>
-						<div id="recaptcha" class="g-recaptcha" data-sitekey="6LfK44AUAAAAAPqX590C9RNY6h_TvK3R9GOCcP4_" data-theme="light">
-							<div style="width: 304px; height: 78px;">
-								<div>
-									<iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfK44AUAAAAAPqX590C9RNY6h_TvK3R9GOCcP4_&amp;co=aHR0cHM6Ly9mb29kcGxhbi5ydTo0NDM.&amp;hl=ru&amp;v=uEf7E1417z6GNSkRx7AyL8K8&amp;theme=light&amp;size=normal&amp;cb=p9yq62op0ei1" width="304" height="78" role="presentation" name="a-x5vlggpl3cm" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+			<div class="question-section">
+				<div class="wrapper-inner">
+					<div class="shadow-wrapper">
+						<form method="POST" id="feedback_form" action="/?WEB_FORM_ID=1&amp;web_form_submit=Отправить">
+							<input type="hidden" name="sessid" id="sessid" value="bed60e776781d007ce9f2b124f66e4ce">
+							<input type="hidden" name="WEB_FORM_ID" value="1">
+							<h3>Напишите нам </h3>
+							<label>
+									Ваше имя
+									<input type="text" required="" placeholder="Марина" name="form_text_2">
+							</label>
+							<label>
+									Ваш email
+									<input type="email" required="" placeholder="marinaivanova@mail.ru" name="form_email_1">
+							</label>
+							<label>
+									Ваш вопрос
+									<textarea required="" name="form_textarea_3"></textarea>
+							</label>
+							<div id="recaptcha" class="g-recaptcha" data-sitekey="6LfK44AUAAAAAPqX590C9RNY6h_TvK3R9GOCcP4_" data-theme="light">
+								<div style="width: 304px; height: 78px;">
+									<div>
+										<iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfK44AUAAAAAPqX590C9RNY6h_TvK3R9GOCcP4_&amp;co=aHR0cHM6Ly9mb29kcGxhbi5ydTo0NDM.&amp;hl=ru&amp;v=uEf7E1417z6GNSkRx7AyL8K8&amp;theme=light&amp;size=normal&amp;cb=p9yq62op0ei1" width="304" height="78" role="presentation" name="a-x5vlggpl3cm" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe>
+									</div>
+									<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
 								</div>
-								<textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
+								<iframe style="display: none;"></iframe>
 							</div>
-							<iframe style="display: none;"></iframe>
-						</div>
-						<div class="bottom">
-							<input class="btn btn-green" id="feedback_submit" name="web_form_submit" type="submit" value="Отправить">
-						</div>
-					</form>
+							<div class="d-block mt-3">
+								<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="#" role="button">Назад</a>
+								<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="#" role="button">Отправить</a>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
+
 		</div>
 	</main>
 {% endblock %}
