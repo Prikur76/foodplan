@@ -7,3 +7,7 @@ def index(request):
         'dishes': dishes
     }
     return render(request, 'shop/index.html', context=context)
+
+def contacts(request):
+
+    return render(request, 'shop/contact.html', context={})
