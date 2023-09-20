@@ -63,44 +63,42 @@
 				<div class="container w-md-75">
 					<div id="carousel1" class="carousel slide" data-bs-ride="carousel">
 						<div class="carousel-inner">
-								{% for dish in dishes %}
-									{% if  forloop.counter  == 1 %}
-										<div class="carousel-item active">
-									{% else %}
-										<div class="carousel-item">
-									{% endif %}
-									<img src="{{  dish.dish_image.url }}" class="d-block w-100" alt="...">
-									<div class="card-img-overlay text-white text-center carousel-item__gradient">
-										<h5><b>{{ dish.slogan }}</b></h5>
-										<h2><b>{{ dish }}</b></h2>
-									</div>
-									</div>
-							    {% endfor %}
-
-
-							</div>
-							<button class="carousel-control-prev carousel__button_prev" type="button" data-bs-target="#carousel1"
-									data-bs-slide="prev">
-								<span class="foodplan_green" aria-hidden="true">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-circle carousel__svg_prev"
-											viewBox="0 0 16 16">
-										<path fill-rule="evenodd"
-												d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
-								  </svg>
-								</span>
-								<span class="visually-hidden">Previous</span>
-							</button>
-							<button class="carousel-control-next carousel__button_next" type="button" data-bs-target="#carousel1"
-									data-bs-slide="next">
-								<span class="foodplan_green" aria-hidden="true">
-									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle carousel__svg_next"
-											viewBox="0 0 16 16">
-										<path fill-rule="evenodd"
-												d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
-									</svg>
-								</span>
-								<span class="visually-hidden">Next</span>
-							</button>
+							{% for dish in dishes %}
+								{% if  forloop.counter  == 1 %}
+									<div class="carousel-item active">
+								{% else %}
+									<div class="carousel-item">
+								{% endif %}
+								<img src="{{  dish.dish_image.url }}" class="d-block w-100" alt="...">
+								<div class="card-img-overlay text-white text-center carousel-item__gradient">
+									<h5><b>{{ dish.slogan }}</b></h5>
+									<h2><b>{{ dish }}</b></h2>
+								</div>
+								</div>
+							{% endfor %}
+						</div>
+						<button class="carousel-control-prev carousel__button_prev" type="button" data-bs-target="#carousel1"
+								data-bs-slide="prev">
+							<span class="foodplan_green" aria-hidden="true">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-left-circle carousel__svg_prev"
+										viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+											d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+							  </svg>
+							</span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next carousel__button_next" type="button" data-bs-target="#carousel1"
+								data-bs-slide="next">
+							<span class="foodplan_green" aria-hidden="true">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-right-circle carousel__svg_next"
+										viewBox="0 0 16 16">
+									<path fill-rule="evenodd"
+											d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z" />
+								</svg>
+							</span>
+							<span class="visually-hidden">Next</span>
+						</button>
 					</div>
 				</div>
 			</div>
