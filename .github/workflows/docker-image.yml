@@ -12,7 +12,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: build and run  
-      run: docker build . --file Dockerfile --tag food:$(date +%s) 
+      run: docker build . --file Dockerfile --tag food:develop
+      env:
+        DEBUG: True
+        SECRET_KEY: 12345
+        ALLOWED_HOSTS: 82.148.31.19 
+    - name:  run 
+      run: docker kill food || true; docker run -d --rm --name food food:develop
       env:
         DEBUG: True
         SECRET_KEY: 12345
