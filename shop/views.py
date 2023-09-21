@@ -12,6 +12,21 @@ def contacts(request):
     return render(request, 'shop/contact.html', context={})
 
 
+def auth(request):
+
+    return render(request, 'lk/auth.html', context={})
+
+
+def registration(request):
+
+    return render(request, 'lk/registration.html', context={})
+
+
+def cabinet(request):
+
+    return render(request, 'lk/lk.html', context={})
+
+
 def order(request):
     foods_intolerances = FoodIntolerance.objects.all()
     context = {
