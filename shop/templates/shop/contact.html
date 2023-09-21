@@ -5,6 +5,11 @@
 {% block title %}
 	Контакты Food Plan
 {% endblock %}
+
+{% block header %}
+	{% include 'shop/header.html' %}
+{% endblock %}
+
 {% block content %}
 	<main style="margin-top: calc(2rem + 85px);">
 		<div class="d-flex flex-column justify-content-start foodplan__head_desc">
@@ -20,10 +25,6 @@
 							Email: <a href="mailto:foodplan@foodplan.ru">foodplan@foodplan.ru</a>
 
 						</div>
-		<!--                <div class="right-column">-->
-		<!--                    <span></span>-->
-		<!--                    <a href="tel:79995554455">+7 999 555 44 55</a>-->
-		<!--                </div>-->
 					</div>
 				</div>
 			</div>
@@ -56,7 +57,7 @@
 								<iframe style="display: none;"></iframe>
 							</div>
 							<div class="d-block mt-3">
-								<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="/" role="button">Назад</a>
+								<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="#" role="button">Назад</a>
 								<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="#" role="button">Отправить</a>
 							</div>
 						</form>
@@ -66,4 +67,29 @@
 
 		</div>
 	</main>
+{% endblock %}
+
+{% block footer %}
+	<footer>
+		<nav class="navbar navbar-expand-md navbar-light mt-5">
+			<div class="container p-2">
+				<a class="navbar-brand" href="https://vk.com/devmanorg">
+					<img src="{% static 'img/logo.8d8f24edbb5f.svg' %}" height="55" width="189" alt="">
+				</a>
+				<div class="footer__sideBtns d-flex">
+					<a href="https://vk.com/devmanorg">
+						<img src="{% static 'img/vk.png' %}" height="38" width="auto" alt="">
+					</a>
+				</div>
+			</div>
+		</nav>
+	</footer>
+	<footer class="footer pt-2" style="border-top: 1px solid lightgray;">
+		<div class="container d-flex flex-row justify-content-center mb-2">
+			<small class="text-center">
+				<h6>© Девман2022. Все права защищены. © Devman2022. All right reserved.</h6>
+				<a href="{% static 'pablic-oferts.pdf' %}" class="link-secondary">Политика конфиденциальности</a>
+			</small>
+		</div>
+	</footer>
 {% endblock %}

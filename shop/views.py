@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from foods.models import Dish, FoodIntolerance, Order
+from foods.models import Dish, FoodIntolerance
 
 def index(request):
     dishes = Dish.objects.filter(is_active=True)[:3]
@@ -11,6 +11,20 @@ def index(request):
 def contacts(request):
     return render(request, 'shop/contact.html', context={})
 
+
+def auth(request):
+
+    return render(request, 'lk/auth.html', context={})
+
+
+def registration(request):
+
+    return render(request, 'lk/registration.html', context={})
+
+
+def cabinet(request):
+
+    return render(request, 'lk/lk.html', context={})
 
 def order_view(request):
     MONTH_PRICE = 300
