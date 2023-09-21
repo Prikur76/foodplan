@@ -7,7 +7,7 @@
     <main style="margin-top: calc(2rem + 85px);">
         <div class="container">
             <div class="card p-3 mb-5 foodplan__shadow">
-                <a href="#" class="link-secondary fw-light foodplan__backButton">
+                <a href="/" class="link-secondary fw-light foodplan__backButton">
                     <svg xmlns="http://www.w3.org/2000/svg" width="9%" height="9%" fill="currentColor" class="bi bi-arrow-left-circle"
                         viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
@@ -71,91 +71,63 @@
                     <tr>
                         <th scope="row" class="text-start">Завтраки</th>
                         <td>
-                            <select name="select1" class="form-select">
-                                <option value="0" selected>&#10004;</option>
-                                <option value="1">&#10008;</option>
+                            <select name="breakfast" class="form-select">
+                                <option value="1" selected>&#10004;</option>
+                                <option value="0">&#10008;</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">Обеды</th>
                         <td>
-                            <select name="select2" class="form-select">
-                                <option value="0" selected>&#10004;</option>
-                                <option value="1">&#10008;</option>
+                            <select name="Lunch" class="form-select">
+                                <option value="1" selected>&#10004;</option>
+                                <option value="0">&#10008;</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">Ужины</th>
                         <td>
-                            <select name="select3" class="form-select">
-                                <option value="0" selected>&#10004;</option>
-                                <option value="1">&#10008;</option>
+                            <select name="Dinner" class="form-select">
+                                <option value="1" selected>&#10004;</option>
+                                <option value="0">&#10008;</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">Десерты</th>
                         <td>
-                            <select name="select4" class="form-select">
-                                <option value="0" selected>&#10004;</option>
-                                <option value="1">&#10008;</option>
+                            <select name="dessert" class="form-select">
+                                <option value="1" selected>&#10004;</option>
+                                <option value="0">&#10008;</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">Кол-во персон</th>
                         <td>
-                            <select name="select5" class="form-select">
-                                <option value="0" selected>1</option>
-                                <option value="1">2</option>
-                                <option value="2">3</option>
-                                <option value="3">4</option>
-                                <option value="4">5</option>
-                                <option value="5">6</option>
+                            <select name="people_number" class="form-select">
+                                <option value="1" selected>1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
                             </select>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-start">Аллергии</th>
                         <td>
-                            <div class="form-check d-flex justify-content-start">
-                                <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="" name="allergy1">
-                                <label class="form-check-label" for="allergy1">
-                                    Рыба и морепродукты
-                                </label>
-                            </div>
-                            <div class="form-check d-flex justify-content-start">
-                                <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="" name="allergy2">
-                                <label class="form-check-label" for="allergy2">
-                                    Мясо
-                                </label>
-                            </div>
-                            <div class="form-check d-flex justify-content-start">
-                                <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="" name="allergy3">
-                                <label class="form-check-label" for="allergy3">
-                                    Зерновые
-                                </label>
-                            </div>
-                            <div class="form-check d-flex justify-content-start">
-                                <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="" name="allergy3">
-                                <label class="form-check-label" for="allergy3">
-                                    Продукты пчеловодства
-                                </label>
-                            </div>
-                            <div class="form-check d-flex justify-content-start">
-                                <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="" name="allergy3">
-                                <label class="form-check-label" for="allergy3">
-                                    Орехи и бобовые
-                                </label>
-                            </div>
-                            <div class="form-check d-flex justify-content-start">
-                                <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="" name="allergy3">
-                                <label class="form-check-label" for="allergy3">
-                                    Молочные продукты
-                                </label>
-                            </div>
+                            {% for foods_intolerance in foods_intolerances %}
+                                <div class="form-check d-flex justify-content-start">
+                                    <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="{{ foods_intolerance.id }}" name="{{ foods_intolerance }}">
+                                    <label class="form-check-label" for="allergy1">
+                                        {{ foods_intolerance }}
+                                    </label>
+                                </div>
+                            {% endfor %}
                         </td>
                     </tr>
                 </tbody>
@@ -169,7 +141,7 @@
                 <button type="submit" class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green">Применить</button>
             </form>
             <div class="d-flex justify-content-center my-5">
-                <button form="order" type="submit" class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green w-50">Оплатить</button>
+                <button form="order" type="submit" class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green w-50">Оплатить: {% verbatim %}{{ Cost }}{% endverbatim %} ₽</button>
             </div>
         </div>
 {% endblock %}
