@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'customers',
     'foods',
     'cart',
-    'orders',
     'coupons',
 ]
 
