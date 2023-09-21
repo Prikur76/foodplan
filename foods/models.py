@@ -203,7 +203,7 @@ class Order(models.Model):
     breakfast = models.BooleanField(verbose_name='Завтрак', default=False)
     dinner = models.BooleanField(verbose_name='Ужин', default=False)
     lunch = models.BooleanField(verbose_name='Обед', default=False)
-    desert = models.BooleanField(verbose_name='Десерты', default=False)
+    dessert = models.BooleanField(verbose_name='Десерты', default=False)
     people_count = models.IntegerField(verbose_name='Кол-во людей', default=1)
     month_count = models.IntegerField(verbose_name='Кол-во месяцев', default=1)
     intolerance = models.ManyToManyField(FoodIntolerance, related_name='orders')

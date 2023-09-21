@@ -122,7 +122,7 @@
                         <td>
                             {% for foods_intolerance in foods_intolerances %}
                                 <div class="form-check d-flex justify-content-start">
-                                    <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value="{{ foods_intolerance.id }}" name="{{ foods_intolerance }}">
+                                    <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value=1 name="{{ foods_intolerance }}">
                                     <label class="form-check-label" for="allergy{{ foods_intolerance.id }}">
                                         {{ foods_intolerance }}
                                     </label>
