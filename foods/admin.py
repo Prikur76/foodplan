@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (FoodIntolerance, Dish,
                      CookingProduct, Ingredient,
-                     Stage, Recipe, MenuType)
+                     Stage, Recipe, MenuType, Order)
 
 
 # Register your models here.
@@ -67,3 +67,7 @@ class MenuTypeAdmin(admin.ModelAdmin):
     raw_id_fields = ['dishes']
     list_filter = ['is_active', 'valid_from', 'valid_to']
     readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    pass

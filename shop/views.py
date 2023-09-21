@@ -18,5 +18,14 @@ def order(request):
         'foods_intolerances': foods_intolerances,
         'month_price': 300,
     }
-    print(request.GET)
+    if request.GET:
+        order = {
+            'month_duration': request.GET['month_duration'],
+            'breakfast': request.GET['breakfast'],
+            'lunch': request.GET['Lunch'],
+            'dinner': request.GET['Dinner'],
+            'dessert': request.GET['dessert'],
+            'people_number': request.GET['people_number'],
+        }
+
     return render(request, 'shop/order.html', context=context)

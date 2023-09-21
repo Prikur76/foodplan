@@ -197,3 +197,25 @@ class MenuType(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Order(models.Model):
+    breakfast = models.BooleanField(verbose_name='Завтрак', default=False)
+    dinner = models.BooleanField(verbose_name='Ужин', default=False)
+    lunch = models.BooleanField(verbose_name='Обед', default=False)
+    desert = models.BooleanField(verbose_name='Десерты', default=False)
+    people_count = models.IntegerField(verbose_name='Кол-во людей', default=1)
+    month_count = models.IntegerField(verbose_name='Кол-во месяцев', default=1)
+    intolerance = models.ManyToManyField(FoodIntolerance, related_name='orders')
+    paid = models.BooleanField(verbose_name='оплачено', default=False)
+    total_sum = models.DecimalField(
+        verbose_name='сумма заказа',
+        max_digits=7,
+        decimal_places=2,
+        validators=[MinValueValidator(0)],
+    )
+
+    def __str__(self):
+        if self.paid:
+            return f'{self.id} Оплачен'
+        return f'{self.id} Не оплачен'
