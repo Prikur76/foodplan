@@ -5,6 +5,10 @@
     План питания на неделю, меню, рецепты, список покупок. Классическое меню, безуглеводное меню
 {% endblock %}
 
+{% block header %}
+	{% include 'shop/header.html' %}
+{% endblock %}
+
 {% block content %}
 	<main style="margin-top: calc(2rem + 85px);">
 		<section class="foodplan__head_bg">
@@ -16,7 +20,7 @@
 								Вы получаете рецепты + список продуктов.<br>
 								Больше не нужно думать, что готовить.</h4>
 						<div class="d-block mt-3">
-							<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="{% url "order" %}" role="button">Хочу попробовать</a>
+							<a class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green" href="#" role="button">Хочу попробовать</a>
 <!-- 							<button class="btn shadow-none btn-outline-success foodplan_green foodplan__border_green">Хочу попробовать</button> -->
 						</div>
 					</div>
@@ -69,11 +73,11 @@
 								{% else %}
 									<div class="carousel-item">
 								{% endif %}
-								<img src="{{  dish.dish_image.url }}" class="d-block w-100" alt="...">
-								<div class="card-img-overlay text-white text-center carousel-item__gradient">
-									<h5><b>{{ dish.slogan }}</b></h5>
-									<h2><b>{{ dish }}</b></h2>
-								</div>
+									<img src="{{  dish.dish_image.url }}" class="d-block w-100" alt="...">
+									<div class="card-img-overlay text-white text-center carousel-item__gradient">
+										<h5><b>{{ dish.slogan }}</b></h5>
+										<h2><b>{{ dish }}</b></h2>
+									</div>
 								</div>
 							{% endfor %}
 						</div>
@@ -99,6 +103,7 @@
 							</span>
 							<span class="visually-hidden">Next</span>
 						</button>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -193,4 +198,7 @@
 			</div>
 		</section>
 	</main>
+{% endblock %}
+{% block footer %}
+	{% include 'shop/footer.html' %}
 {% endblock %}
