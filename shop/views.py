@@ -9,5 +9,8 @@ def index(request):
     return render(request, 'shop/index.html', context=context)
 
 def contacts(request):
-
     return render(request, 'shop/contact.html', context={})
+
+
+def order(request):
+    return render(request, 'shop/order.html', context={})
