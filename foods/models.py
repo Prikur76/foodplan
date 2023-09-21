@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.timezone import now
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 from tinymce.models import HTMLField
@@ -208,6 +209,7 @@ class Order(models.Model):
     month_count = models.IntegerField(verbose_name='Кол-во месяцев', default=1)
     intolerance = models.ManyToManyField(FoodIntolerance, related_name='orders')
     paid = models.BooleanField(verbose_name='оплачено', default=False)
+    start_date = models.DateTimeField('Дата заказа', db_index=True, default=now)
     total_sum = models.DecimalField(
         verbose_name='сумма заказа',
         max_digits=7,

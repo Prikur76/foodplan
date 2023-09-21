@@ -70,4 +70,4 @@ class MenuTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    pass
+    readonly_fields = ['start_date']
