@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from foods.models import Dish, FoodIntolerance
+from foods.models import Dish, FoodIntolerance, Order
 
 def index(request):
     dishes = Dish.objects.filter(is_active=True)[:3]
