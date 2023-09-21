@@ -14,5 +14,9 @@ def contacts(request):
 
 def order(request):
     foods_intolerances = FoodIntolerance.objects.all()
+    context = {
+        'foods_intolerances': foods_intolerances,
+        'month_price': 300,
+    }
     print(request.GET)
-    return render(request, 'shop/order.html', context={'foods_intolerances': foods_intolerances})
+    return render(request, 'shop/order.html', context=context)
