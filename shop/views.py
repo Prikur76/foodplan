@@ -3,6 +3,7 @@ from foods.models import Dish, FoodIntolerance, Order
 from yookassa import Configuration, Payment
 from environs import Env
 import uuid
+import socket
 from food_plan.settings import ACCOUNT_ID, U_KEY
 
 
@@ -39,7 +40,6 @@ def order_view(request):
         'month_price': MONTH_PRICE,
     }
     if request.GET:
-        print(request.GET)
         order_data = {
             'month_duration': int(request.GET['month_duration']),
             'breakfast': request.GET['breakfast'],
@@ -66,28 +66,38 @@ def order_view(request):
         )
         order.intolerance.set(order_data['intolerances'])
 
-        Configuration.account_id = ACCOUNT_ID
-        Configuration.secret_key = U_KEY
+        description = f"""
+                    Подписка на {order.month_count} месяц(а)
+                    Аллергены: {[intolerance.name for intolerance in order_data['intolerances']]}
+                """
+        http_host = request.META['HTTP_HOST']
 
-        desciption = f"""
-            Подписка на {order.month_count} месяц(а)
-            Аллергены: {[intolerance.name for intolerance in order_data['intolerances']]}
-        """
-
-        payment = Payment.create({
-            "amount": {
-                "value": f"{order.total_sum}",
-                "currency": "RUB"
-            },
-            "confirmation": {
-                "type": "redirect",
-                "return_url": '/'
-            },
-            "capture": True,
-            "description": desciption,
-            "metadata": {"order": order.id},
-        }, uuid.uuid4())
-        confirmation_url = payment.confirmation.confirmation_url
+        confirmation_url = create_payment(ACCOUNT_ID, U_KEY, description, f'http://{http_host}', order)
         return redirect(confirmation_url)
-
     return render(request, 'shop/order.html', context=context)
+
+
+def create_payment(account_id, u_key, description, return_url, order):
+    Configuration.account_id = account_id
+    Configuration.secret_key = u_key
+    idempotence_key = str(uuid.uuid4())
+
+    payment = Payment.create({
+        "amount": {
+            "value": f"{order.total_sum}",
+            "currency": "RUB"
+        },
+        "confirmation": {
+            "type": "redirect",
+            "return_url": return_url,
+        },
+        "capture": True,
+        "description": description,
+        "metadata": {
+            "order": order.id
+        },
+    }, idempotence_key)
+
+    confirmation_url = payment.confirmation.confirmation_url
+    return confirmation_url
+
