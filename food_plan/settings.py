@@ -16,8 +16,8 @@ from environs import Env
 env = Env()
 env.read_env()
 
-ACCOUNT_ID = env('ACCOUNT_ID')
-U_KEY = env('U_KEY')
+ACCOUNT_ID = env.str('ACCOUNT_ID')
+U_KEY = env.str('U_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
