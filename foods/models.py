@@ -5,6 +5,8 @@ from django.urls import reverse
 from tinymce.models import HTMLField
 from django.conf import settings
 
+from customers.models import Customer
+
 
 # Create your models here.
 class FoodIntolerance(models.Model):
@@ -221,3 +223,24 @@ class Order(models.Model):
         if self.paid:
             return f'{self.id} Оплачен'
         return f'{self.id} Не оплачен'
+
+
+class CustomerOrder(models.Model):
+    order = models.ForeignKey(
+        Order, on_delete=models.CASCADE,
+        related_name='customers',
+        verbose_name='заказ')
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE,
+        related_name='orders',
+        verbose_name='клиент')
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='дата создания')
+
+    class Meta:
+        verbose_name = 'заказ'
+        verbose_name_plural = 'заказы клиентов'
+
+    def __str__(self):
+        return f'{self.customer} - {self.order}'
