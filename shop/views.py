@@ -1,5 +1,15 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from foods.models import Dish, FoodIntolerance, Order
+from yookassa import Configuration, Payment
+from environs import Env
+import uuid
+
+
+env = Env()
+env.read_env()
+ACCOUNT_ID = env('ACCOUNT_ID')
+U_KEY = env('U_KEY')
+
 
 def index(request):
     dishes = Dish.objects.filter(is_active=True)[:3]
@@ -41,7 +51,7 @@ def order_view(request):
             'lunch': request.GET['lunch'],
             'dinner': request.GET['dinner'],
             'dessert': request.GET['dessert'],
-            'people_number': request.GET['people_number'],
+            'people_number': int(request.GET['people_number']),
             'intolerances': [],
         }
         for foods_intolerance in foods_intolerances:
@@ -50,19 +60,39 @@ def order_view(request):
                 intolerance_id = request.GET[foods_intolerance]
                 order_data['intolerances'].append(foods_intolerances.get(id=intolerance_id))
 
-        print(order_data)
-
         order = Order.objects.create(
             breakfast=order_data['breakfast'],
             dinner=order_data['dinner'],
             lunch=order_data['lunch'],
             dessert=order_data['dessert'],
-            people_count=int(order_data['people_number']),
-            month_count=int(order_data['month_duration']),
-            total_sum=round(MONTH_PRICE *order_data['month_duration'], 2),
+            people_count=order_data['people_number'],
+            month_count=order_data['month_duration'],
+            total_sum=round(MONTH_PRICE * order_data['month_duration'], 2),
         )
         order.intolerance.set(order_data['intolerances'])
-        #
-        # print(order)
+
+        Configuration.account_id = ACCOUNT_ID
+        Configuration.secret_key = U_KEY
+
+        desciption = f"""
+            Подписка на {order.month_count} месяц(а)
+            Аллергены: {[intolerance.name for intolerance in order_data['intolerances']]}
+        """
+
+        payment = Payment.create({
+            "amount": {
+                "value": f"{order.total_sum}",
+                "currency": "RUB"
+            },
+            "confirmation": {
+                "type": "redirect",
+                "return_url": '/'
+            },
+            "capture": True,
+            "description": desciption,
+            "metadata": {"order": order.id},
+        }, uuid.uuid4())
+        confirmation_url = payment.confirmation.confirmation_url
+        return redirect(confirmation_url)
 
     return render(request, 'shop/order.html', context=context)
