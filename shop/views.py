@@ -3,12 +3,7 @@ from foods.models import Dish, FoodIntolerance, Order
 from yookassa import Configuration, Payment
 from environs import Env
 import uuid
-
-
-env = Env()
-env.read_env()
-ACCOUNT_ID = env('ACCOUNT_ID')
-U_KEY = env('U_KEY')
+from food_plan.settings import ACCOUNT_ID, U_KEY
 
 
 def index(request):
