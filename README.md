@@ -11,8 +11,7 @@ python -m pip install -r requirements.txt
 ACCOUNT_ID='ID вашего магазина'
 U_KEY='Ключ к юкассе'
 ```
-- Токен для Телеграм бота вы можете получить https://telegram.me/BotFather
-- Для получения CHAT_ID напишите любое сообщение вашему боту, после чего перейдите по ссылке https://api.telegram.org/bot{TG_TOKEN}/getUpdates
+- Оплата сделана через севрис [Юкасса](https://yookassa.ru). Необходимо зарегестрироваться и получить ID  магазина и API  ключ
 
 ## Запуск
 Вы можете создать ключ выполнив команду
