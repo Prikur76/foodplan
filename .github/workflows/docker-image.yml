@@ -20,4 +20,6 @@ jobs:
         --env=SECRET_KEY=12345 \
         --env=ALLOWED_HOSTS=82.148.31.19 \
         --env=DEBUG=True \
+        --env=ACCOUNT_ID=237136 \
+        --env=U_KEY='test_8veJnrLUb09Z9rU5B_kFryjyJwDfiThi8cI926tTxN0' \
         food:develop
