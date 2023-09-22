@@ -50,7 +50,7 @@ python -c 'from django.core.management.utils import get_random_secret_key; print
 
 Создайте файл базы данных SQLite и отмигрируйте её следующей командой:
 ```
-python .\manage.py migrate  
+python manage.py migrate  
 ```
 
 Создайте супер пользователя
