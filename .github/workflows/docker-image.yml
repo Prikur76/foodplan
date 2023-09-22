@@ -17,7 +17,7 @@ jobs:
     - name:  run 
       run: |
         docker kill food || true; \
-        docker run -d -p 80:8000 --rm --name food \
+        docker run -v /var/lib/food_plan/db.sqlite3:/opt/app/db.sqlite3  -d -p 80:8000 --rm --name food \
         --env=SECRET_KEY=12345 \
         --env=ALLOWED_HOSTS=82.148.31.19 \
         --env=DEBUG=True \
