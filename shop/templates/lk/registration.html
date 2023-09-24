@@ -42,27 +42,26 @@
 					<h1 class="mb-4 text-center"><strong>Регистрация</strong></h1>
 				</div>
 				<div class="card px-5 py-3 d-flex align-items-center foodplan__shadow">
-					<form>
-<!--						<h1 class="mb-4 text-center"><strong>Регистрация</strong></h1>-->
+					<form id="registration_form">
 						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">Имя</label>
+							<label class="form-label">Имя</label>
 							<input type="text" class="form-control" id="name">
 						</div>
 						<div class="mb-3">
-							<label for="exampleInputEmail1" class="form-label">Email</label>
+							<label  class="form-label">Email</label>
 							<input type="email" class="form-control" id="email" aria-describedby="emailHelp">
 						</div>
 						<div class="mb-3">
-							<label for="exampleInputPassword1" class="form-label">Пароль</label>
+							<label  class="form-label">Пароль</label>
 							<input type="password" class="form-control" id="password">
 						</div>
 						<div class="mb-3">
-							<label for="exampleInputPassword1" class="form-label">Подтверждение пароля</label>
+							<label  class="form-label">Подтверждение пароля</label>
 							<input type="password" class="form-control" id="PasswordConfirm">
 						</div>
 						<div class="row mb-3">
 							<div class="col-12 col-sm-6 mt-3">
-								<button type="submit" class="btn  shadow-nonew-100 btn-outline-success foodplan_green foodplan__border_green">Регистрация</button>
+								<button form="registration_form" type="submit" class="btn  shadow-nonew-100 btn-outline-success foodplan_green foodplan__border_green">Регистрация</button>
 							</div>
 							<div class="col-12 col-sm-6 mt-3 d-flex justify-content-center align-items-center">
 								<small>Уже есть аккаунт? <a href="{% url 'shop:auth' %}" class="link-dark foodplan_green">Войти</a></small>
@@ -75,26 +74,5 @@
 	</main>
 {% endblock %}
 {% block footer %}
-	<footer>
-		<nav class="navbar navbar-expand-md navbar-light mt-5">
-			<div class="container p-2">
-				<a class="navbar-brand" href="https://vk.com/devmanorg">
-					<img src="{% static 'img/logo.8d8f24edbb5f.svg' %}" height="55" width="189" alt="">
-				</a>
-				<div class="footer__sideBtns d-flex">
-					<a href="https://vk.com/devmanorg">
-						<img src="{% static 'img/vk.png' %}" height="38" width="auto" alt="">
-					</a>
-				</div>
-			</div>
-		</nav>
-	</footer>
-	<footer class="footer pt-2" style="border-top: 1px solid lightgray;">
-		<div class="container d-flex flex-row justify-content-center mb-2">
-			<small class="text-center">
-				<h6>© Девман2022. Все права защищены. © Devman2022. All right reserved.</h6>
-				<a href="{% static 'pablic-oferts.pdf' %}" class="link-secondary">Политика конфиденциальности</a>
-			</small>
-		</div>
-	</footer>
+	{% include 'shop/footer.html' %}
 {% endblock %}
