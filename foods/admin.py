@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import (FoodIntolerance, Dish,
                      CookingProduct, Ingredient,
                      Stage, Recipe, MenuType, Order,
-                     CustomerOrder)
+                   )
 from customers.models import Customer
 
 
@@ -80,7 +80,3 @@ class OrderAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     pass
 
-
-@admin.register(CustomerOrder)
-class CustomerOrderAdmin(admin.ModelAdmin):
-    pass

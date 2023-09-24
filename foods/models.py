@@ -203,13 +203,13 @@ class MenuType(models.Model):
 
 
 class Order(models.Model):
-    # customer = models.ForeignKey(
-    #     Customer,
-    #     on_delete=models.CASCADE,
-    #     related_name='orders',
-    #     verbose_name='клиент',
-    #     null=True,
-    # )
+    customer = models.ForeignKey(
+        Customer,
+        on_delete=models.CASCADE,
+        related_name='orders',
+        verbose_name='клиент',
+        null=True,
+    )
     breakfast = models.BooleanField(verbose_name='Завтрак', default=False)
     dinner = models.BooleanField(verbose_name='Ужин', default=False)
     lunch = models.BooleanField(verbose_name='Обед', default=False)
@@ -233,22 +233,3 @@ class Order(models.Model):
         return f'{self.id} Не оплачен'
 
 
-class CustomerOrder(models.Model):
-    order = models.ForeignKey(
-        Order, on_delete=models.CASCADE,
-        related_name='customers',
-        verbose_name='заказ')
-    customer = models.ForeignKey(
-        Customer, on_delete=models.CASCADE,
-        related_name='orders',
-        verbose_name='клиент')
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='дата создания')
-
-    class Meta:
-        verbose_name = 'заказ'
-        verbose_name_plural = 'заказы клиентов'
-
-    def __str__(self):
-        return f'{self.customer} - {self.order}'
