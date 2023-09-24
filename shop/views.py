@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from foods.models import Dish, FoodIntolerance, Order
 from yookassa import Configuration, Payment
 import uuid
@@ -33,8 +34,14 @@ def auth(request):
 
 
 def registration(request):
-
-    return render(request, 'lk/registration.html', context={})
+    #нет никакой валидации
+    if 'name' and 'email' and 'password' and 'password_confirm' in request.GET:
+        user, created = User.objects.get_or_create(
+            username=request.GET['name'],
+            email=request.GET['email'],
+            password=request.GET['password'],
+        )
+    return render(request, 'lk/registration.html', context={'user': user, 'created': created})
 
 
 def cabinet(request):
