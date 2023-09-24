@@ -34,14 +34,19 @@ def auth(request):
 
 
 def registration(request):
-    #нет никакой валидации
+    context = {
+        'user': '',
+        'created': False,
+    }
     if 'name' and 'email' and 'password' and 'password_confirm' in request.GET:
         user, created = User.objects.get_or_create(
             username=request.GET['name'],
             email=request.GET['email'],
             password=request.GET['password'],
         )
-    return render(request, 'lk/registration.html', context={'user': user, 'created': created})
+        context = {'user': user, 'created': created}
+
+    return render(request, 'lk/registration.html', context=context)
 
 
 def cabinet(request):
