@@ -1,14 +1,23 @@
 from django.shortcuts import render, redirect
 from foods.models import Dish, FoodIntolerance, Order
 from yookassa import Configuration, Payment
-from environs import Env
 import uuid
 import socket
+from urllib.parse import urljoin, urlencode
 from food_plan.settings import ACCOUNT_ID, U_KEY
 
 
 def index(request):
     dishes = Dish.objects.filter(is_active=True)[:3]
+    if 'order_id' in request.GET:
+        order = Order.objects.get(id=request.GET['order_id'])
+        payment_id = order.yookassa_id
+        Configuration.account_id = ACCOUNT_ID
+        Configuration.secret_key = U_KEY
+        payment = Payment.find_one(payment_id)
+        if payment.paid:
+            order.paid = True
+            order.save()
     context = {
         'dishes': dishes
     }
@@ -65,14 +74,18 @@ def order_view(request):
             total_sum=round(MONTH_PRICE * order_data['month_duration'], 2),
         )
         order.intolerance.set(order_data['intolerances'])
-
         description = f"""
                     Подписка на {order.month_count} месяц(а)
                     Аллергены: {[intolerance.name for intolerance in order_data['intolerances']]}
-                """
-        http_host = request.META['HTTP_HOST']
+                    """
+        return_url = f'http://{request.META["HTTP_HOST"]}/?' + urlencode({'order_id': order.id})
 
-        confirmation_url = create_payment(ACCOUNT_ID, U_KEY, description, f'http://{http_host}', order)
+        payment = create_payment(ACCOUNT_ID, U_KEY, description, return_url, order)
+        confirmation_url = payment.confirmation.confirmation_url
+
+        order.yookassa_id = payment.id
+        order.save()
+
         return redirect(confirmation_url)
     return render(request, 'shop/order.html', context=context)
 
@@ -98,6 +111,5 @@ def create_payment(account_id, u_key, description, return_url, order):
         },
     }, idempotence_key)
 
-    confirmation_url = payment.confirmation.confirmation_url
-    return confirmation_url
+    return payment
 

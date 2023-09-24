@@ -212,6 +212,7 @@ class Order(models.Model):
     intolerance = models.ManyToManyField(FoodIntolerance, related_name='orders')
     paid = models.BooleanField(verbose_name='оплачено', default=False)
     start_date = models.DateTimeField('Дата заказа', db_index=True, default=now)
+    yookassa_id = models.CharField(verbose_name='yookassa id',  max_length=64)
     total_sum = models.DecimalField(
         verbose_name='сумма заказа',
         max_digits=7,

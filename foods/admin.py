@@ -73,7 +73,7 @@ class MenuTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    readonly_fields = ['start_date']
+    readonly_fields = ['start_date', 'yookassa_id']
 
 
 @admin.register(Customer)
