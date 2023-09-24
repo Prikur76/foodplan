@@ -58,84 +58,84 @@
             </div>
             <h2><strong>Выберите подходящий тариф</strong></h2>
             <form id="order">
-            <table class="table text-center text-truncate mb-5">
-                <tbody>
-                    <tr>
-                        <th scope="row" class="text-start">Срок</th>
-                        <td>
-                            <select class="form-select" id="month_duration" name="month_duration">
-                                <option value="1" selected >1 мес.</option>
-                                <option value="3">3 мес.</option>
-                                <option value="6">6 мес.</option>
-                                <option value="12">12 мес.</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Завтраки</th>
-                        <td>
-                            <select name="breakfast" class="form-select">
-                                <option value="1" selected>&#10004;</option>
-                                <option value="0">&#10008;</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Обеды</th>
-                        <td>
-                            <select name="lunch" class="form-select">
-                                <option value="1" selected>&#10004;</option>
-                                <option value="0">&#10008;</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Ужины</th>
-                        <td>
-                            <select name="dinner" class="form-select">
-                                <option value="1" selected>&#10004;</option>
-                                <option value="0">&#10008;</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Десерты</th>
-                        <td>
-                            <select name="dessert" class="form-select">
-                                <option value="1" selected>&#10004;</option>
-                                <option value="0">&#10008;</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Кол-во персон</th>
-                        <td>
-                            <select name="people_number" class="form-select" >
-                                <option value="1" selected>1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="text-start">Аллергии</th>
-                        <td>
-                            {% for foods_intolerance in foods_intolerances %}
-                                <div class="form-check d-flex justify-content-start">
-                                    <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value={{ foods_intolerance.id }} name="{{ foods_intolerance }}">
-                                    <label class="form-check-label" for="allergy{{ foods_intolerance.id }}">
-                                        {{ foods_intolerance }}
-                                    </label>
-                                </div>
-                            {% endfor %}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="submit" id="TableSubmit" class="d-none"></button>
+                <table class="table text-center text-truncate mb-5">
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-start">Срок</th>
+                            <td>
+                                <select class="form-select" id="month_duration" name="month_duration">
+                                    <option value="1" selected >1 мес.</option>
+                                    <option value="3">3 мес.</option>
+                                    <option value="6">6 мес.</option>
+                                    <option value="12">12 мес.</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Завтраки</th>
+                            <td>
+                                <select name="breakfast" class="form-select">
+                                    <option value="1" selected>&#10004;</option>
+                                    <option value="0">&#10008;</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Обеды</th>
+                            <td>
+                                <select name="lunch" class="form-select">
+                                    <option value="1" selected>&#10004;</option>
+                                    <option value="0">&#10008;</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Ужины</th>
+                            <td>
+                                <select name="dinner" class="form-select">
+                                    <option value="1" selected>&#10004;</option>
+                                    <option value="0">&#10008;</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Десерты</th>
+                            <td>
+                                <select name="dessert" class="form-select">
+                                    <option value="1" selected>&#10004;</option>
+                                    <option value="0">&#10008;</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Кол-во персон</th>
+                            <td>
+                                <select name="people_number" class="form-select" >
+                                    <option value="1" selected>1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Аллергии</th>
+                            <td>
+                                {% for foods_intolerance in foods_intolerances %}
+                                    <div class="form-check d-flex justify-content-start">
+                                        <input class="form-check-input me-1 foodplan_checked-green" type="checkbox" value={{ foods_intolerance.id }} name="{{ foods_intolerance }}">
+                                        <label class="form-check-label" for="allergy{{ foods_intolerance.id }}">
+                                            {{ foods_intolerance }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="submit" id="TableSubmit" class="d-none"></button>
             </form>
 
             <form class="card d-flex flex-row align-items-baseline mb-5 p-3 foodplan__bg_grey">
@@ -160,4 +160,7 @@
         </script>
 
 
+{% endblock %}
+{% block footer %}
+    {% include 'shop/footer.html' %}
 {% endblock %}
