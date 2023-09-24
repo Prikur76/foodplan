@@ -203,6 +203,13 @@ class MenuType(models.Model):
 
 
 class Order(models.Model):
+    # customer = models.ForeignKey(
+    #     Customer,
+    #     on_delete=models.CASCADE,
+    #     related_name='orders',
+    #     verbose_name='клиент',
+    #     null=True,
+    # )
     breakfast = models.BooleanField(verbose_name='Завтрак', default=False)
     dinner = models.BooleanField(verbose_name='Ужин', default=False)
     lunch = models.BooleanField(verbose_name='Обед', default=False)
