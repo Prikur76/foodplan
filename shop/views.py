@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from yookassa import Configuration, Payment
 
+from customers.models import Customer
 from food_plan.settings import ACCOUNT_ID, U_KEY
-# from django.contrib.auth.models import User
 from foods.models import Dish, FoodIntolerance, Order
 from .forms import UserRegistrationForm, AuthForm
 
@@ -86,11 +86,50 @@ def registration(request):
 
 @login_required(login_url='/auth/')
 def account(request):
+    user = Customer.objects.get(username=request.user)
+    persons_count = '0'
+    intolerances = '0'
+    try:
+        order = Order.objects.filter(customer=request.user, paid=True).first()
+        persons_count = str(order.people_count)
+        intolerances = str(order.intolerance.count())
+    except Order.DoesNotExist:
+        order = None
 
-    return render(request, 'account/lk.html', context={})
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user.username = form.cleaned_data['username']
+            if form.cleaned_data['username'] != request.user.username:
+                user.save(update_fields=('username'))
+            user.password = form.cleaned_data['password1']
+            if form.cleaned_data['password1'] != request.user.password:
+                user.save(update_fields=('password'))
+            login(request, user,
+                  backend='shop.authentication.EmailAuthBackend')
+            return redirect('/auth/')
+    else:
+        form = UserRegistrationForm()
+
+        context = {
+            'user': user,
+            'orders': order,
+            'persons_count': persons_count,
+            'intolerances': intolerances,
+            'form': form
+        }
+        return render(request,
+                      template_name='account/lk.html',
+                      context=context)
 
 
+def logout(request):
+    return render(request, 'account/logout.html')
+
+
+@login_required()
 def order_view(request):
+    user = Customer.objects.get(username=request.user)
     MONTH_PRICE = 300
     foods_intolerances = FoodIntolerance.objects.all()
     context = {
@@ -114,6 +153,7 @@ def order_view(request):
                 order_data['intolerances'].append(foods_intolerances.get(id=intolerance_id))
 
         order = Order.objects.create(
+            customer=user,
             breakfast=order_data['breakfast'],
             dinner=order_data['dinner'],
             lunch=order_data['lunch'],
