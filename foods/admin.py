@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import (FoodIntolerance, Dish,
                      CookingProduct, Ingredient,
-                     Stage, Recipe, MenuType, Order,
-                   )
+                     Stage, Recipe, MenuType, Order)
 from customers.models import Customer
 
 
@@ -76,7 +75,22 @@ class OrderAdmin(admin.ModelAdmin):
     readonly_fields = ['start_date', 'yookassa_id']
 
 
+class OrderTabularInline(admin.TabularInline):
+    model = Order
+    extra = 0
+    verbose_name_plural = 'заказ'
+
+
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    pass
-
+    inlines = [OrderTabularInline]
+    list_display = ['username', 'email', 'avatar', 'is_subscriber']
+    list_filter = ['is_active', 'is_subscriber']
+    list_per_page = 20
+    fieldsets = [
+        (None, {'fields': [
+            ('is_active','is_subscriber'),
+            'username', 'email',
+            'avatar'
+        ]})
+    ]
