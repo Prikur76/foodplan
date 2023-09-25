@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('customers', '0002_customer_avatar'),
+        ('customers', '0001_initial'),
         ('foods', '0006_order_yookassa_id'),
     ]
 
