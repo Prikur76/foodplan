@@ -26,26 +26,27 @@
 					{% endif %}
 				</div>
 				<div class="card px-5 py-3 d-flex align-items-center foodplan__shadow">
-					<form id="registration_form">
+					<form method="post">
+						{% csrf_token %}
 						<div class="mb-3">
-							<label class="form-label">Имя</label>
-							<input type="text" class="form-control" id="name" name="name">
+							<label for="exampleInputEmail1" class="form-label">{{ form.username.label }}</label>
+							{{ form.username }}
 						</div>
 						<div class="mb-3">
-							<label  class="form-label">Email</label>
-							<input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+							<label for="exampleInputEmail1" class="form-label">{{ form.email.label }}</label>
+							{{ form.email }}
 						</div>
 						<div class="mb-3">
-							<label  class="form-label">Пароль</label>
-							<input type="password" class="form-control" id="password" name="password">
+							<label for="exampleInputPassword1" class="form-label">{{ form.password1.label }}</label>
+							{{ form.password1 }}
 						</div>
 						<div class="mb-3">
-							<label  class="form-label">Подтверждение пароля</label>
-							<input type="password" class="form-control" id="PasswordConfirm" name="password_confirm">
+							<label for="exampleInputPassword1" class="form-label">{{ form.password2.label }}</label>
+							{{ form.password2 }}
 						</div>
 						<div class="row mb-3">
 							<div class="col-12 col-sm-6 mt-3">
-								<button  type="submit" class="btn  shadow-nonew-100 btn-outline-success foodplan_green foodplan__border_green">Регистрация</button>
+								<button type="submit" class="btn  shadow-nonew-100 btn-outline-success foodplan_green foodplan__border_green">Регистрация</button>
 							</div>
 							<div class="col-12 col-sm-6 mt-3 d-flex justify-content-center align-items-center">
 								<small>Уже есть аккаунт? <a href="{% url 'shop:auth' %}" class="link-dark foodplan_green">Войти</a></small>
