@@ -28,8 +28,21 @@ def index(request):
     }
     return render(request, 'shop/index.html', context=context)
 
+
 def contacts(request):
     return render(request, 'shop/contact.html', context={})
+
+
+def header(request):
+    if request.user.is_authenticated:
+        context = {
+            'user': user
+        }
+    else:
+        context = {}
+    return render(request,
+                  'shop/header.html',
+                  context=context)
 
 
 def auth(request):
