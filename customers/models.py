@@ -4,6 +4,9 @@ from django.db import models
 
 # Create your models here.
 class Customer(User):
+    avatar = models.ImageField(
+        verbose_name='аватар',
+        blank=True)
     is_subscriber = models.BooleanField(
         verbose_name='подписчик',
         default=True
