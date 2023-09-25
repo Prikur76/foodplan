@@ -4,4 +4,4 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 COPY . /opt/app 
 copy entrypoint.sh entrypoint.sh
-entrypoint /entrypoint.sh
+entrypoint entrypoint.sh
