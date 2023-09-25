@@ -1,11 +1,15 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from foods.models import Dish, FoodIntolerance, Order
-from yookassa import Configuration, Payment
 import uuid
-import socket
-from urllib.parse import urljoin, urlencode
+from urllib.parse import urlencode
+
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from yookassa import Configuration, Payment
+
 from food_plan.settings import ACCOUNT_ID, U_KEY
+# from django.contrib.auth.models import User
+from foods.models import Dish, FoodIntolerance, Order
+from .forms import UserRegistrationForm, AuthForm
 
 
 def index(request):
@@ -29,29 +33,62 @@ def contacts(request):
 
 
 def auth(request):
-
-    return render(request, 'lk/auth.html', context={})
+    if request.method == 'POST':
+        form = AuthForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request,
+                                username=cd['email'],
+                                password=cd['password'])
+            if user.is_active:
+                login(request, user,
+                      backend='shop.authentication.EmailAuthBackend')
+                return redirect('/account/')
+    else:
+        form = AuthForm()
+        return render(request,
+                      template_name='account/auth.html',
+                      context={'form': form})
 
 
 def registration(request):
-    context = {
-        'user': '',
-        'created': False,
-    }
-    if 'name' and 'email' and 'password' and 'password_confirm' in request.GET:
-        user, created = User.objects.get_or_create(
-            username=request.GET['name'],
-            email=request.GET['email'],
-            password=request.GET['password'],
-        )
-        context = {'user': user, 'created': created}
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password1'])
+            new_user.save()
+            login(request, new_user,
+                  backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('/auth/')
+    else:
+        form = UserRegistrationForm()
+    return render(request,
+                  template_name='account/registration.html',
+                  context={'form': form})
 
-    return render(request, 'lk/registration.html', context=context)
+
+# def registration(request):
+#     context = {
+#         'user': '',
+#         'created': False,
+#     }
+#     if 'name' and 'email' and 'password' and 'password_confirm' in request.GET:
+#         user, created = User.objects.get_or_create(
+#             username=request.GET['name'],
+#             email=request.GET['email'],
+#             password=request.GET['password'],
+#         )
+#         context = {'user': user, 'created': created}
+#
+#     return render(request, 'account/registration.html', context=context)
 
 
-def cabinet(request):
+@login_required(login_url='/auth/')
+def account(request):
 
-    return render(request, 'lk/lk.html', context={})
+    return render(request, 'account/lk.html', context={})
+
 
 def order_view(request):
     MONTH_PRICE = 300
