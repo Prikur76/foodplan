@@ -91,8 +91,9 @@ def account(request):
     intolerances = '0'
     try:
         order = Order.objects.filter(customer=request.user, paid=True).first()
-        persons_count = str(order.people_count)
-        intolerances = str(order.intolerance.count())
+        if order:
+            persons_count = str(order.people_count)
+            intolerances = str(order.intolerance.count())
     except Order.DoesNotExist:
         order = None
 
